@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Hygiene>
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Hygiene page</h1>
+
+@if (TempData["keymessage"] != null)
+{
+    <h2>@TempData["keymessage"]</h2>
+}
+
+<button type="button" class="btn btn-dark">
+    <a class="nav-link text-light" asp-area="" asp-controller="Hygiene" asp-action="Create">
+        Add a New Hygiene Product
+    </a>
+</button>
+
+<table class=" table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>NAME </th>
+            <th> CATEGORY</th>
+            <th>PRİCE </th>
+            <th>ACTİON</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="20%">@obj.Name</td>
+                <td width="20%">@obj.Category</td>
+                <td width="20%">@obj.Price</td>
+                 <td width="20%">
+
+                    <a class="btn btn-primary" asp-controller="Hygiene" asp-action="Edit" asp-route-id="@obj.Id">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </a>
+                    <a class="btn btn-danger" asp-controller="Hygiene" asp-action="Delete"  asp-route-id="@obj.Id">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
+                    <a class="btn btn-warning" asp-controller="Hygiene" asp-action="Details"  asp-route-id="@obj.Id">
+                        <span class="material-symbols-outlined">
+                            info
+                        </span>
+                    </a>
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>
